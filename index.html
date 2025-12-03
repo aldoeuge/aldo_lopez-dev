@@ -1,0 +1,567 @@
+<!DOCTYPE HTML>
+<html>
+    <Style>
+        body{
+            position:relative !important;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #001216;
+            width:100vw;
+            height:100vh;
+            margin:0;
+        }
+        *{
+            box-sizing: border-box;
+            font-family: 'Work Sans';
+            color: white;
+            overflow-x: hidden;
+        }
+        .hiddenOF{
+            overflow: hidden;
+            justify-content: start;
+        }
+        .dataBoard{
+            padding: 20px;
+            border-radius: 10px;
+            border:  none;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap:20px;
+            width: 70%;
+            margin:20px 0 0 0;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+        .techItem {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 10px;
+            border-radius: 8px;
+            background: none;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            font-size: 14px;
+            width:130px;
+            height:40px;
+        }
+        .tech-icon {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            display: inline-block;
+        }
+        .techGroup{
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap:15px;
+            height: 220px;
+            width: 415px;
+            align-items: center;
+            justify-content: start;
+        }
+        .techList{
+            display:grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap:10px;
+            width:90%;
+        }
+        .projectsBoard{
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap:15px;
+            width: 70%;
+            margin-top: 20px;
+            height: 625px
+        }
+        .projectsGroup{
+            display:flex;
+            flex-direction:row;
+            gap:20px;
+            width:100%;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .projectItem{
+            width:50%;
+            height:440px;
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            img{
+                border-radius: 12px;
+            }
+        }
+
+        #liLogo{
+            height:42px; 
+            width: 42px;
+            border-radius: 10px;
+            overflow:hidden !important;
+            cursor:pointer;
+            padding:0;
+            margin: 0;
+            /* &:hover{
+                transform: scale(1.05);
+            } */
+        }
+        .glassButton{
+            background: linear-gradient(100.58deg, rgba(217, 217, 217, 0.22) 26.3%, rgba(115, 115, 115, 0.22) 77.65%);
+            box-shadow: 0px 4px 12.8px 0px #0000006E;
+            backdrop-filter: blur(4px);
+            width: 200px;
+            height: 42px !important;
+            opacity: 1;
+            border-width: 0.5px;
+            font-family: "Roboto", sans-serif;
+            font-weight: 400;
+            font-style: Regular;
+            font-size: 13px;
+            line-height: 93%;
+            letter-spacing: -6%;
+            text-align: center;
+            padding:10px;
+            cursor:pointer;
+            border: 0.5px solid;
+            border-color: rgba(255, 255, 255, 0.1);
+            /* border-image-source: linear-gradient(90deg, rgba(122, 122, 122, 0.54) 0%, rgba(224, 224, 224, 0.54) 100%); */
+            border-radius:10px;
+            transition-duration: 1s;
+            transition-property: background-color;      
+            overflow: hidden
+        }
+        .glassButton:hover{
+            background-color: rgb(255,255,255,0.1);
+        }
+        .topRay1 {
+            width: 1000px;
+            height: 0px;
+            top: calc(50vh);
+            rotate: -45deg;
+            border-radius: 50px; 
+            animation: spin 11s linear infinite;
+            box-shadow: 0px 0px 51px 7px rgba(0, 59, 71, 1);
+            z-index:1;
+            position: absolute;
+        }
+        .topRay2 {
+            width: 1000px;
+            height: 0px;
+            top: calc(50vh);
+            rotate: 45deg;
+            border-radius: 50px;
+            animation: spin 11s linear infinite; 
+            box-shadow: 0px 0px 51px 7px rgba(0, 59, 71, 1);
+            z-index:1;
+            position: absolute;
+        }
+        .bottomLight {
+            width:150vw;
+            height: 0px;
+            background-color:  rgba(58, 0, 232, .5);
+            border-radius: 50px; 
+            rotate: -30deg;
+            animation: spinBottom 11s linear infinite; 
+            box-shadow: 0px 0px 4011px 112px rgba(58, 0, 232, 1);
+            z-index:1;
+            position: absolute;
+            left:-20vw;
+            bottom: 0;
+        }
+        .LightCenter {
+            width: 0;
+            height: 0;
+            animation: spin 11s linear infinite,  bright 11s linear infinite;
+            box-shadow: 0px 0px 220px 220px rgba(0, 59, 71, 1);
+            z-index:1;
+            position: absolute;
+            top: calc(50vh);
+            left: calc((50vw- 27px )/2 );
+        }
+
+        .glassContainer{
+            border: 0.5px solid  rgba(122, 122, 122, 0.24);
+            box-shadow: 0px 4px 12.8px 0px rgba(0, 0, 0, 0.43);
+            backdrop-filter: blur(4px);
+            background: linear-gradient(0deg, rgba(150, 150, 150, 0.24) -12.34%, rgba(45, 45, 45, 0) 121.75%);
+            opacity: 1;
+            top: 264px;
+            left: 194px;
+            border-radius: 12px;
+            border-width: 0.5px;
+            display:flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .aboutMeText{
+            height: 68px;
+            opacity: 1;
+            top: 334px;
+            left: 489px;
+            font-weight: 300;
+            font-style: Light;
+            font-size: 76px;
+            line-height: 108%;
+            letter-spacing: -7%;
+            text-align: center;
+            margin:30px 0;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            45% { transform: rotate(30deg); }
+            55% { transform: rotate(30deg); }
+            100% { transform: rotate(0deg); }
+        }
+        @keyframes spinBottom {
+            0% { transform: rotate(0deg); }
+            5% { transform: rotate(0deg); }
+            45% { transform: rotate(60deg); }
+            55% { transform: rotate(60deg); }
+            95% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+        @keyframes bright {
+            0% { box-shadow: 0px 0px 220px 220px rgba(0, 59, 71, 1) }
+            48% { box-shadow: 0px 0px 660px 550px rgba(0, 59, 71, 1) }
+            52% { box-shadow: 0px 0px 660px 550px rgba(0, 59, 71, 1) }
+            100% { box-shadow: 0px 0px 220px 220px rgba(0, 59, 71, 1) }
+        }
+
+        @keyframes joinScene {
+            100% { transform: translateX(calc(-250vw + 446px)); }
+        }
+        @keyframes leaveScene {
+            100% { transform: translateX(-150vw); }
+        }
+        .joinScene{ animation: joinScene 1s forwards ;  }
+        .leaveScene{ animation: leaveScene 1s forwards ;  }
+        .hidden{ opacity: 0; }
+        #content{
+            z-index:50;
+            position: absolute;
+            top: 100px;
+            right:-200vw;
+            overflow:visible ;
+            * {
+                overflow:visible ;
+            }
+            a, img{
+                overflow: hidden !important;
+            }
+        }
+        #bottomLight{
+            height:2440px;
+            top: 0
+        }
+        #heads{
+            width:100vw; 
+            height:600px;
+            display:flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            gap:5px; 
+            padding:80px; 
+            border-radius:20px;
+            margin:0;
+            transition: left 5s ease;
+            position: absolute;
+            z-index:50;
+            top: calc(50vh - 300px);
+        }
+
+        .bottomLightMidContainer{
+            position:relative;
+            width: 100vw; 
+            height:2440px; 
+            overflow:hidden !important
+        }
+        @media screen and (max-device-width: 768px), (max-width: 768px) {
+            .projectsGroup{
+                flex-direction: column;
+            }
+            .projectItem, .techGroup {
+                width:90%;
+            }
+            #technologies{
+                height:1200px !important;
+            }
+            .projectsBoard{
+                height: 1500px !important;
+            }
+            .projectItem{
+                height:600px;
+            }
+            .techItem{
+                width:190px !important;
+                height:50px;
+            }
+            .techList{
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .topRay1, .topRay2{
+                width:800px;
+            }
+            #bottomLight,.bottomLightMidContainer{
+                height:3900px;
+            }
+        }
+    </Style>
+
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    </head>
+
+
+    <body class="hiddenOF" id="body">
+        <div id ="topRay1" class="topRay1"></div>
+        <div id ="topRay2" class="topRay2"></div>
+        <div id ="LightCenter" class="LightCenter "></div>
+
+        <div id="heads" >
+            <div style="font-size:128px; font-weight: 400;">ALDO</div>
+            <div style="font-size:128px; font-weight: 400;">LÓPEZ</div>
+            <div style="font-size:33px; font-weight: 400; margin: 0 0 20px 0">Software developer</div>
+            <button class="glassButton" id="explore">Explore</button>
+        </div>
+
+        <span id="content">
+            <span style="height:1450px; position:relative;">
+                <div  class="glassContainer" style="width:893px; height:400px">
+                    <div class="aboutMeText">About Me</div>
+                    <div style="margin:25px; font-size:17px; line-height: 1.5;">
+                        Hello!, i'm Aldo López, a <b>Full Stack Software Developer</b> based in México. My passion for coding began when i was 14 years old, skilled at all phases of project development, I particularly enjoy projects where graphics are involved, as well as creating efficient solutions to complex challenges.
+                        In my free time, I enjoy working on personal projects that allow me to learn new technologies and doing coding challenges.
+                    </div>
+                    <div style="display:flex; flex-direction: row;  gap:10px; justify-content: center; align-items: center; padding: 0">
+                        <a style="height:42px" href="https://www.linkedin.com/in/aldo-eugenio-l%C3%B3pez-dom%C3%ADnguez-3b4a16b6/">
+                            <img id="liLogo" src="https://www.3dberry.com/assets/LI.png" >
+                        </a>
+                        <a style="text-decoration: none;" href="./assets/ALDO_LOPEZ_CV.pdf" download="ALDO_LOPEZ_CV.pdf" ><button class="glassButton">Download Complete CV</button></a>
+                    </div>
+                </div>
+
+                <div id="technologies" class="dataBoard glassContainer" style="width:893px; height:651px; padding:10px">
+                    <span class="aboutMeText">Technologies</span>
+
+                    <div class="tech-list">
+                        <div class="techGroup glassContainer" >
+                            <div>Frontend</div>
+                            <div class="techList ">
+                                <div class="techItem ">
+                                    <img class="tech-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/330px-Unofficial_JavaScript_logo_2.svg.png" alt="JavaScript logo">
+                                    JavaScript
+                                </div>
+                            
+                                <div class="techItem " >
+                                    <svg style="stroke:#333333;"   fill="#007acc" height="26" viewBox="0 0 27 26" width="27" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="m.98608 0h24.32332c.5446 0 .9861.436522.9861.975v24.05c0 .5385-.4415.975-.9861.975h-24.32332c-.544597 0-.98608-.4365-.98608-.975v-24.05c0-.538478.441483-.975.98608-.975zm13.63142 13.8324v-2.1324h-9.35841v2.1324h3.34111v9.4946h2.6598v-9.4946zm1.0604 9.2439c.4289.2162.9362.3784 1.5218.4865.5857.1081 1.2029.1622 1.8518.1622.6324 0 1.2331-.0595 1.8023-.1784.5691-.1189 1.0681-.3149 1.497-.5879s.7685-.6297 1.0187-1.0703.3753-.9852.3753-1.6339c0-.4703-.0715-.8824-.2145-1.2365-.1429-.3541-.3491-.669-.6186-.9447-.2694-.2757-.5925-.523-.9692-.7419s-.8014-.4257-1.2743-.6203c-.3465-.1406-.6572-.2771-.9321-.4095-.275-.1324-.5087-.2676-.7011-.4054-.1925-.1379-.3409-.2838-.4454-.4379-.1045-.154-.1567-.3284-.1567-.523 0-.1784.0467-.3392.1402-.4824.0935-.1433.2254-.2663.3959-.369s.3794-.1824.6269-.2392c.2474-.0567.5224-.0851.8248-.0851.22 0 .4523.0162.697.0486.2447.0325.4908.0825.7382.15.2475.0676.4881.1527.7218.2555.2337.1027.4495.2216.6475.3567v-2.4244c-.4015-.1514-.84-.2636-1.3157-.3365-.4756-.073-1.0214-.1095-1.6373-.1095-.6268 0-1.2207.0662-1.7816.1987-.5609.1324-1.0544.3392-1.4806.6203s-.763.6392-1.0104 1.0743c-.2475.4352-.3712.9555-.3712 1.5609 0 .7731.2268 1.4326.6805 1.9785.4537.546 1.1424 1.0082 2.0662 1.3866.363.146.7011.2892 1.0146.4298.3134.1405.5842.2865.8124.4378.2282.1514.4083.3162.5403.4946s.198.3811.198.6082c0 .1676-.0413.323-.1238.4662-.0825.1433-.2076.2676-.3753.373s-.3766.1879-.6268.2473c-.2502.0595-.5431.0892-.8785.0892-.5719 0-1.1383-.0986-1.6992-.2959-.5608-.1973-1.0805-.4933-1.5589-.8879z"  fill-rule="evenodd"></path></svg>                    
+                                    TypeScript
+                                </div>
+                            
+                                <div class="techItem">
+                                        <svg _ngcontent-ng-c3804801859="" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 223 236" width="27" class="angular-logo"><g _ngcontent-ng-c3804801859="" clip-path="url(#a)"><path _ngcontent-ng-c3804801859="" fill="url(#b)" d="m222.077 39.192-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z"></path><path _ngcontent-ng-c3804801859="" fill="url(#c)" d="m222.077 39.192-8.019 125.923L137.387 0l84.69 39.192Zm-53.105 162.825-57.933 33.056-57.934-33.056 11.783-28.556h92.301l11.783 28.556ZM111.039 62.675l30.357 73.803H80.681l30.358-73.803ZM7.937 165.115 0 39.192 84.69 0 7.937 165.115Z"></path></g><defs _ngcontent-ng-c3804801859=""><linearGradient _ngcontent-ng-c3804801859="" id="b" x1="49.009" x2="225.829" y1="213.75" y2="129.722" gradientUnits="userSpaceOnUse"><stop _ngcontent-ng-c3804801859="" stop-color="#E40035"></stop><stop _ngcontent-ng-c3804801859="" offset=".24" stop-color="#F60A48"></stop><stop _ngcontent-ng-c3804801859="" offset=".352" stop-color="#F20755"></stop><stop _ngcontent-ng-c3804801859="" offset=".494" stop-color="#DC087D"></stop><stop _ngcontent-ng-c3804801859="" offset=".745" stop-color="#9717E7"></stop><stop _ngcontent-ng-c3804801859="" offset="1" stop-color="#6C00F5"></stop></linearGradient><linearGradient _ngcontent-ng-c3804801859="" id="c" x1="41.025" x2="156.741" y1="28.344" y2="160.344" gradientUnits="userSpaceOnUse"><stop _ngcontent-ng-c3804801859="" stop-color="#FF31D9"></stop><stop _ngcontent-ng-c3804801859="" offset="1" stop-color="#FF5BE1" stop-opacity="0"></stop></linearGradient><clipPath _ngcontent-ng-c3804801859="" id="a"><path _ngcontent-ng-c3804801859="" fill="#fff" d="M0 0h223v236H0z"></path></clipPath></defs></svg>                    
+                                        Angular
+                                </div>
+                            
+                                <div class="techItem">
+                                    <img class="tech-icon" src="https://www.w3.org/html/logo/downloads/HTML5_Logo_512.png" alt="HTML5 logo">
+                                    HTML5
+                                </div>
+                            
+                                <div class="techItem">
+                                    <img src="//upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/330px-Sass_Logo_Color.svg.png" decoding="async" width="27" height="27" class="mw-file-element" srcset="//upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/500px-Sass_Logo_Color.svg.png 1.5x, //upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/640px-Sass_Logo_Color.svg.png 2x" data-file-width="512" data-file-height="384">
+                                    SASS
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="techGroup glassContainer" > 
+                            <div>Backend</div>
+                            <div class="techList ">
+                                <div class="techItem">
+                                    <img class="tech-icon" src="https://www.python.org/static/img/python-logo-large.c36dccadd999.png?1646853871" alt="Python logo">
+                                    Python
+                                </div>
+                            
+                                <div class="techItem">
+                                    <img class="XNo5Ab" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADkElEQVR4Ab3V1XLcSBQGYC3z3iwzM5NZ3S0mD4aZGV5gGYeZzRxm5jyCX8DXy8y7yZyoPSWXJ5FZyak69vD/6dcAM52Zs3POzd5OYfu8fvmiu5X/XclwC5lrNb4eYev8HdJfi3YrsGCHDPP6JdALPGg5bkgukFevWrC/U3hvwXZpaNkBFZbsVWAEMCCBt10Ew0Q0l4SynufOa2ntbseCXSVy77zt0tEVh7XyisMq2AHm9EoVQJEHd4tgLv+fluc+nXH43H7x85WHtf/XHNdg1VENxgT0SeBpF4YRrpIAnjYBvB0iuFqFH7Uidk09eEBasPyQ8su6UzqsPaHDZACzusWqFijI1ymC37zd3cYPejrkxyYM9nbxzyzZpwxuOGvA+tM6TBVAj9xqwd1aacHfJcKsHnN7xXJzK7+XfoJsw+fvlPPrTuvljecMmC6ABjaPbqGt0gK9b3avBHP7JZjdLfyhl7jaqnDyCbl1Tp94gYbPFOAq8WDk7VugjzNzQEpzO6sBUXIvF8Gw9qQ+YwA9cj1XacFl04JhAnGYPXAFAAcReDtFRwBGodJCs9VCuzDcgq9LABJjxwJgoEuDnADoWRNRGNWCeZ+aIzR8XICp5h0BaCbAOhW0BXo7DqNxAAEMdCli6X7VEYCa5kZakJKYAqy1B1irpnlHAHKSAy1XaYKEJgKEED36EcTCnbIjACnBAR/DQF/fWntAvAlwdPj8mBAEYpyjH8sZA4QYMUMtgLWXA0rv3IvSDYCSDYDjjYAjLG2BvrAjAG5SgHwtoGwdoEw9rWgYwIcJDXYGEJwI0PoeoFIN4HQDDbeWvqgzgEAFYa4NYMAEdL4DqP1ds35UBSBBAssPqs4CAjYAtvctQIXaqnBrXUXBIQAeB9D/pnXubXfxHmWGgKqtBmhHn70FFWr+twu2VslwjgG40GU/x3TYQk0chdnyOAgzTJ4xAAXQr2yYfZuxG9Ra8xTO1A3ioD1AjBNYtn96ABIgF3AIlxhgrmcmGtJWr6JE4/d2CPq7PhUA/RrmIniQTbAPMVMdVKz9HEfZ/0YD+DAxw+VJAcQU+YZLs5iZybySe+VOlKvbi0OobCHo7/t4AK3I/SsX0QeMk1Pf9u5bKNUwZH05zd8uXwHwdPBltb1pL+kktzJXa1CpZpn5g/WbnudHALP7RHD1oSHXAHmRuSbzCXMjztd2+3vEi95e7ldjV6OfmeZcAuAsEWG+c8BcAAAAAElFTkSuQmCC" style="width:27px" alt="" data-csiid="2DwdaZTAEsOymtkP08bfwA0_2" data-atf="1">
+                                    NodeJS
+                                </div>
+                            
+                                <div class="techItem">
+                                    <img class="XNo5Ab" src="https://www.peanutsquare.com/wp-content/uploads/2024/04/Express.png" style="width:27px" alt="" data-csiid="vD0dacaNFaa3qtsP3ama4Q4_2" data-atf="1">
+                                    ExpressJS
+                                </div>
+                            
+                                <div class="techItem">
+                                    <img class="tech-icon" src="https://us1.discourse-cdn.com/nginx/original/2X/8/821c12766e9307c64af6951d893ceff906c946f0.png" alt="NGINX logo">
+                                    Nginx
+                                </div>
+                            
+                                <div class="techItem">
+                                    <img class="tech-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Microsoft_.NET_logo.svg/120px-Microsoft_.NET_logo.svg.png" alt=".NET logo">
+                                    .NET
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="techGroup glassContainer" >
+                            <div>Database</div>
+                            <div class="techList">
+                                <div class="techItem">
+                                    <img class="tech-icon" src="https://www.mysql.com/common/logos/logo-mysql-170x115.png" alt="MySQL logo">
+                                    MySQL
+                                </div>
+                            
+                                <div class="techItem">
+                                    <img class="tech-icon" src="https://cdn.worldvectorlogo.com/logos/microsoft-sql-server-1.svg" alt="SQL Server logo">
+                                    MS SQL Server
+                                </div>
+                            
+                                <div class="techItem">
+                                    <img class="tech-icon" src="https://firebase.google.com/downloads/brand-guidelines/PNG/logo-logomark.png" alt="Firebase logo">
+                                    Firebase
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="techGroup glassContainer" >
+                            <div>Tools</div>
+                            <div class="techList">
+
+                                <div class="techItem">
+                                    <img class="tech-icon" color="blue"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Azure_DevOps_icon.svg/100px-Azure_DevOps_icon.svg.png" alt="Azure DevOps logo">
+                                    Azure DevOps
+                                </div>
+                            
+                                <div class="techItem">
+                                    <img class="tech-icon" src="https://voyager.postman.com/logo/postman-logo-icon-orange.svg" alt="Postman logo"> 
+                                    PostMan
+                                </div>
+                            
+                                <div class="techItem">
+                                    <img class="tech-icon" src="https://miro.medium.com/v2/resize:fit:750/0*YtCzzpjWb60A_P3-.png" alt="Cypress logo">
+                                    Cypress
+                                </div>
+                            
+                                <div class="techItem">
+                                    <img class="tech-icon" src="https://avatars.githubusercontent.com/u/18133?s=280&amp;v=4" alt="Git logo">
+                                    Git
+                                </div>
+                            
+                                <div class="techItem">
+                                    <img class="tech-icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Npm-logo.svg/540px-Npm-logo.svg.png" alt="npm logo">
+                                    npm
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div  class="projectsBoard glassContainer" style="width:893px; ">
+                    <span class="aboutMeText">Personal Projects</span>
+                    <div class="projectsGroup">
+                        <div class="projectItem glassContainer" >
+                            <div style="display:flex; flex-direction:column; align-items: center; justify-content: center; gap:10px; width:100%">
+                                <h3>KENO</h3>
+                                <div>
+                                    <a href="https://3dberry.com/keno">
+                                        <img class="projectImage" src="./assets/KENO.png" width="100%" height="85%">
+                                    </a>
+                                </div>
+                            </div>
+                            <div style="display:flex; flex-direction:column; align-items: center; justify-content: center ; gap:10px; width:100%">
+                                <b>Open Source CAD/CAM Web app.</b> <br>Design, create toolpaths, simulate and export GCode for CNC Hobbyist Lathes.
+                            </div>
+                        </div>
+                    
+                        <div class="projectItem glassContainer" >
+                            <div style="display:flex; flex-direction:column; align-items: center; justify-content: center; gap:10px;  width:100%">
+                                <h3>3DBerry</h3>
+                                <div>
+                                    <a href="https://3dberry.com">
+                                        <img class="projectImage" src="./assets/3DBERRY.png" width="100%"  height="80%" >
+                                    </a>
+                                </div>
+                            </div>
+                            <div style="display:flex; flex-direction:column; align-items: center; justify-content: center; gap:10px; width:80%">
+                                <b>Online 3D printing service.</b> <br> Upload your 3D model, choose material, settings and get it printed and shipped to your door.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="WE" class="dataBoard glassContainer" style="width:893px; height:520px">
+                    <span class="aboutMeText"> Work Experience</span>
+                    <span class="glassContainer" style="width:850px; height:157px; padding:20px">
+                        <span style="font-size:22px; font-weight:600">National Energy Improvement Fund (NEIF)</span>
+                        <span  style="font-size:18px;"> Full Stack Software Developer</span>
+                        <div style="margin-top:12px;">
+                            Developed and maintained web applications, also designed custom components using Angular, NodeJS, .NET, and SQL Technologies
+                        </div>
+                    </span>
+                
+                    <span class="glassContainer" style="width:850px; height:157px; padding:20px">
+                        <span style="font-size:22px; font-weight:600">  AT Engine Mexico ( Now GE Aerospace) </span>
+                        <span style="font-size:18px;">Process Engineer </span>
+                        <div style="margin-top:12px;">
+                            Developed Precision machining processes for titanium and Inconel Blisks for turbofan engines
+                        </div>
+                    </span>
+                </div>
+            </span>
+        </span>
+
+        <div id="bottomLight" class="hidden" style="position:absolute;  left:0; ">
+            <div class="bottomLightMidContainer">
+                <div class="bottomLight "></div>
+            </div>
+        </div>
+
+        <script>
+            const slideButton = document.getElementById("explore")
+            const heads = document.getElementById("heads")
+            const topRay11 = document.getElementById("topRay1")
+            const topRay2 = document.getElementById("topRay2")
+            const LightCenter = document.getElementById("LightCenter")
+            const content = document.getElementById("content")
+            const bottomLight = document.getElementById("bottomLight")
+            const body = document.getElementById("body")
+            
+            slideButton.addEventListener('click',()=>{
+                heads.classList.toggle("leaveScene")
+                topRay11.classList.toggle("leaveScene")
+                topRay2.classList.toggle("leaveScene")
+                LightCenter.classList.toggle("leaveScene")
+                content.classList.toggle("joinScene")
+                bottomLight.classList.remove("hidden")
+                body.classList.remove("hiddenOF")
+            })
+        </script>
+    </body>
+</html>
